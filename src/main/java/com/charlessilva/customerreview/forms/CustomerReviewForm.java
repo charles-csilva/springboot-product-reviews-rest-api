@@ -1,4 +1,4 @@
-package ca.homedepot.customerreview.forms;
+package com.charlessilva.customerreview.forms;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package ca.homedepot.customerreview;
+package com.charlessilva.customerreview;
 
 public class CurseWordsHandler {
 	

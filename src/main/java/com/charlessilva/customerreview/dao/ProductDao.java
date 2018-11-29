@@ -1,7 +1,8 @@
-package ca.homedepot.customerreview.dao;
+package com.charlessilva.customerreview.dao;
 
-import ca.homedepot.customerreview.model.ProductModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.charlessilva.customerreview.model.ProductModel;
 
 public interface ProductDao extends JpaRepository<ProductModel, Long> {
 }

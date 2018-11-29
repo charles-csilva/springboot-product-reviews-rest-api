@@ -1,4 +1,4 @@
-package ca.homedepot.customerreview.util;
+package com.charlessilva.customerreview.util;
 
 import com.google.common.base.Preconditions;
 

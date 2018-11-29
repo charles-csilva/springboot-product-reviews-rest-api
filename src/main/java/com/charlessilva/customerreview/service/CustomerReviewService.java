@@ -1,11 +1,11 @@
-package ca.homedepot.customerreview.service;
+package com.charlessilva.customerreview.service;
 
 import java.util.List;
 
-import ca.homedepot.customerreview.model.LanguageModel;
-import ca.homedepot.customerreview.model.ProductModel;
-import ca.homedepot.customerreview.model.UserModel;
-import ca.homedepot.customerreview.model.CustomerReviewModel;
+import com.charlessilva.customerreview.model.CustomerReviewModel;
+import com.charlessilva.customerreview.model.LanguageModel;
+import com.charlessilva.customerreview.model.ProductModel;
+import com.charlessilva.customerreview.model.UserModel;
 
 
 public interface CustomerReviewService

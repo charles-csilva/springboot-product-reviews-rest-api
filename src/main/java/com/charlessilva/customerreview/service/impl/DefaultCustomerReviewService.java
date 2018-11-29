@@ -1,17 +1,17 @@
-package ca.homedepot.customerreview.service.impl;
+package com.charlessilva.customerreview.service.impl;
 
 import java.util.List;
 
-import ca.homedepot.customerreview.model.LanguageModel;
-import ca.homedepot.customerreview.util.ServicesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import ca.homedepot.customerreview.model.ProductModel;
-import ca.homedepot.customerreview.model.UserModel;
-import ca.homedepot.customerreview.service.CustomerReviewService;
-import ca.homedepot.customerreview.dao.CustomerReviewDao;
-import ca.homedepot.customerreview.model.CustomerReviewModel;
 import org.springframework.stereotype.Component;
+
+import com.charlessilva.customerreview.dao.CustomerReviewDao;
+import com.charlessilva.customerreview.model.CustomerReviewModel;
+import com.charlessilva.customerreview.model.LanguageModel;
+import com.charlessilva.customerreview.model.ProductModel;
+import com.charlessilva.customerreview.model.UserModel;
+import com.charlessilva.customerreview.service.CustomerReviewService;
+import com.charlessilva.customerreview.util.ServicesUtil;
 
 
 @Component

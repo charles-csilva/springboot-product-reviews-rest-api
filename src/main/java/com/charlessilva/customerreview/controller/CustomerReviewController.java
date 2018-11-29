@@ -1,15 +1,5 @@
-package ca.homedepot.customerreview.controller;
+package com.charlessilva.customerreview.controller;
 
-import ca.homedepot.customerreview.CurseWordsHandler;
-import ca.homedepot.customerreview.dao.ProductDao;
-import ca.homedepot.customerreview.dao.UserDao;
-import ca.homedepot.customerreview.exception.ProductNotFoundException;
-import ca.homedepot.customerreview.exception.UserNotFoundException;
-import ca.homedepot.customerreview.forms.CustomerReviewForm;
-import ca.homedepot.customerreview.model.CustomerReviewModel;
-import ca.homedepot.customerreview.model.ProductModel;
-import ca.homedepot.customerreview.model.UserModel;
-import ca.homedepot.customerreview.service.CustomerReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.charlessilva.customerreview.CurseWordsHandler;
+import com.charlessilva.customerreview.dao.ProductDao;
+import com.charlessilva.customerreview.dao.UserDao;
+import com.charlessilva.customerreview.exception.ProductNotFoundException;
+import com.charlessilva.customerreview.exception.UserNotFoundException;
+import com.charlessilva.customerreview.forms.CustomerReviewForm;
+import com.charlessilva.customerreview.model.CustomerReviewModel;
+import com.charlessilva.customerreview.model.ProductModel;
+import com.charlessilva.customerreview.model.UserModel;
+import com.charlessilva.customerreview.service.CustomerReviewService;
 
 import java.util.List;
 import java.util.stream.Collectors;

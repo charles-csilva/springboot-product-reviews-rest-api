@@ -1,13 +1,14 @@
-package ca.homedepot.customerreview.dao;
+package com.charlessilva.customerreview.dao;
 
 import java.util.List;
 
-import ca.homedepot.customerreview.model.LanguageModel;
-import ca.homedepot.customerreview.model.ProductModel;
-import ca.homedepot.customerreview.model.CustomerReviewModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
+import com.charlessilva.customerreview.model.CustomerReviewModel;
+import com.charlessilva.customerreview.model.LanguageModel;
+import com.charlessilva.customerreview.model.ProductModel;
 
 import javax.transaction.Transactional;
 

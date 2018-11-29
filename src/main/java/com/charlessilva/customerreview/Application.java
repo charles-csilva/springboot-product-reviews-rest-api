@@ -1,4 +1,4 @@
-package ca.homedepot.customerreview;
+package com.charlessilva.customerreview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package ca.homedepot.customerreview.model;
+package com.charlessilva.customerreview.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
