@@ -1,4 +1,4 @@
-# SpringBootRestfulServiceReviews
+# SpringBoot - Restful Service - Reviews
 Spring Boot - Sample Restful Service - Product Review
 
 - Maven
