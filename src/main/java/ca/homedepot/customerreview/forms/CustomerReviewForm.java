@@ -2,10 +2,6 @@ package ca.homedepot.customerreview.forms;
 
 import java.io.Serializable;
 
-
-/**
- * @author Weichen Zhou
- */
 public class CustomerReviewForm implements Serializable
 {
 	private Double rating;

@@ -9,10 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-
-/**
- * @author Weichen Zhou
- */
 @Entity
 @Table(name = "lang")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
