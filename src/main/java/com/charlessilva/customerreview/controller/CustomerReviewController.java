@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,9 @@ import com.charlessilva.customerreview.model.UserModel;
 import com.charlessilva.customerreview.service.CustomerReviewService;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 @RestController
+@RequestMapping("reviews")
 public class CustomerReviewController
 {
 	@Autowired
@@ -38,9 +38,11 @@ public class CustomerReviewController
 	@Autowired
 	private CustomerReviewService customerReviewService;
 
-	@GetMapping({ "products/{productId:\\d+}/reviews" })
-	public List<CustomerReviewModel> getReviews(@PathVariable final Long productId,
-			@RequestParam(required = false) final Double ratingFrom, @RequestParam(required = false) final Double ratingTo)
+	@GetMapping({ "" })
+	public List<CustomerReviewModel> getReviews(
+		@RequestParam final Long productId,
+		@RequestParam(required = false) final Double ratingFrom,
+		@RequestParam(required = false) final Double ratingTo)
 	{
 		final ProductModel product = productDao.findOne(productId);
 		if (product == null)
@@ -58,22 +60,23 @@ public class CustomerReviewController
 		return customerReviewService.getReviewsForProduct(product);
 	}
 
-	@PostMapping({ "products/{productId:\\d+}/users/{userId:\\d+}/reviews" })
-	public ResponseEntity<CustomerReviewModel> createReview(@PathVariable final Long userId, @PathVariable final Long productId,
-			@RequestBody final CustomerReviewForm customerReviewForm)
+	@PostMapping({ "" })
+	public ResponseEntity<CustomerReviewModel> createReview(
+		@RequestBody final CustomerReviewForm customerReviewForm)
 	{
 		if(customerReviewForm.getRating() < 0
 				|| CurseWordsHandler.containsCurseWords(customerReviewForm.getHeadline())
 				|| CurseWordsHandler.containsCurseWords(customerReviewForm.getComment())) {
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		
+		Long productId = customerReviewForm.getProductId();
 		final ProductModel product = productDao.findOne(productId);
 		if (product == null)
 		{
 			throw new ProductNotFoundException(productId);
 		}
 
+		Long userId = customerReviewForm.getUserId();
 		final UserModel user = userDao.findOne(userId);
 		if (user == null)
 		{
@@ -86,23 +89,7 @@ public class CustomerReviewController
 		return new ResponseEntity<CustomerReviewModel>(reviewModel, HttpStatus.OK);
 	}
 
-	@PostMapping({ "products" })
-	public ProductModel createProduct()
-	{
-		final ProductModel product = new ProductModel();
-		productDao.save(product);
-		return product;
-	}
-
-	@PostMapping({ "users" })
-	public UserModel createUser()
-	{
-		final UserModel user = new UserModel();
-		userDao.save(user);
-		return user;
-	}
-
-	@DeleteMapping({ "reviews/{reviewId:\\d+}" })
+	@DeleteMapping({ "/{reviewId:\\d+}" })
 	public void deleteReview(@PathVariable final Long reviewId)
 	{
 		customerReviewService.deleteCustomerReview(reviewId);
