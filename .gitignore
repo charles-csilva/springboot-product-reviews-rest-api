@@ -1,2 +1,7 @@
 # maven build dir
 target/
+
+# settings
+.settings/
+.project
+.classpath
