@@ -15,6 +15,11 @@ import java.io.Serializable;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class UserModel implements Serializable
 {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4570771234797387291L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

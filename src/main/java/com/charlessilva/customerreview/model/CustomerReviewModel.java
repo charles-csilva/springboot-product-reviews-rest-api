@@ -16,7 +16,12 @@ import java.io.Serializable;
 @Table(name = "customer_reviews")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class CustomerReviewModel implements Serializable {
-	
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -957489032761609092L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

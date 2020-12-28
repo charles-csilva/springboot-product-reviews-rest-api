@@ -16,6 +16,11 @@ import java.io.Serializable;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class ProductModel implements Serializable
 {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -8363753309718393189L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
