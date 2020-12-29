@@ -2,9 +2,11 @@ package com.charlessilva.customerreview.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.charlessilva.customerreview.dao.ProductDao;
+import com.charlessilva.customerreview.dto.ProductDTO;
 import com.charlessilva.customerreview.model.ProductModel;
 
 
@@ -15,10 +17,10 @@ public class ProductController
 	private ProductDao productDao;
 
 	@PostMapping({ "products" })
-	public ProductModel createProduct()
+	public ProductModel createProduct(@RequestBody final ProductDTO productDTO)
 	{
 		ProductModel product = new ProductModel();
-		product.setName("product test");
+		product.setName(productDTO.getName());
 		productDao.save(product);
 		return product;
 	}

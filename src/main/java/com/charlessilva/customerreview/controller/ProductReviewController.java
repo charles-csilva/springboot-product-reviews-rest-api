@@ -63,21 +63,21 @@ public class ProductReviewController
 
 	@PostMapping({ "" })
 	public ResponseEntity<CustomerReviewModel> createReview(
-		@RequestBody final ProductReviewDTO customerReviewForm)
+		@RequestBody final ProductReviewDTO productReviewDTO)
 	{
-		if(customerReviewForm.getRating() < 0
-				|| CurseWordsHandler.containsCurseWords(customerReviewForm.getHeadline())
-				|| CurseWordsHandler.containsCurseWords(customerReviewForm.getComment())) {
+		if(productReviewDTO.getRating() < 0
+				|| CurseWordsHandler.containsCurseWords(productReviewDTO.getHeadline())
+				|| CurseWordsHandler.containsCurseWords(productReviewDTO.getComment())) {
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		Long productId = customerReviewForm.getProductId();
+		Long productId = productReviewDTO.getProductId();
 		Optional<ProductModel> product = productDao.findById(productId);
 		if (!product.isPresent())
 		{
 			throw new ProductNotFoundException(productId);
 		}
 
-		Long userId = customerReviewForm.getUserId();
+		Long userId = productReviewDTO.getUserId();
 		Optional<UserModel> user = userDao.findById(userId);
 		if (!user.isPresent())
 		{
@@ -85,8 +85,8 @@ public class ProductReviewController
 		}
 
 		CustomerReviewModel reviewModel = customerReviewService
-				.createCustomerReview(customerReviewForm.getRating(), customerReviewForm.getHeadline(),
-						customerReviewForm.getComment(), product.get(), user.get());
+				.createCustomerReview(productReviewDTO.getRating(), productReviewDTO.getHeadline(),
+						productReviewDTO.getComment(), product.get(), user.get());
 		return new ResponseEntity<CustomerReviewModel>(reviewModel, HttpStatus.OK);
 	}
 
