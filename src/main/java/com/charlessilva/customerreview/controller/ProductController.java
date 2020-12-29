@@ -17,7 +17,8 @@ public class ProductController
 	@PostMapping({ "products" })
 	public ProductModel createProduct()
 	{
-		final ProductModel product = new ProductModel();
+		ProductModel product = new ProductModel();
+		product.setName("product test");
 		productDao.save(product);
 		return product;
 	}

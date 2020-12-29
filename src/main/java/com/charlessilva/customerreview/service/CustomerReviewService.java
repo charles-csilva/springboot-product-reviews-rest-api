@@ -3,7 +3,6 @@ package com.charlessilva.customerreview.service;
 import java.util.List;
 
 import com.charlessilva.customerreview.model.CustomerReviewModel;
-import com.charlessilva.customerreview.model.LanguageModel;
 import com.charlessilva.customerreview.model.ProductModel;
 import com.charlessilva.customerreview.model.UserModel;
 
@@ -19,8 +18,6 @@ public interface CustomerReviewService
 	Double getAverageRating(ProductModel product);
 
 	Integer getNumberOfReviews(ProductModel product);
-
-	List<CustomerReviewModel> getReviewsForProductAndLanguage(ProductModel product, LanguageModel language);
 
 	void deleteCustomerReview(Long id);
 	

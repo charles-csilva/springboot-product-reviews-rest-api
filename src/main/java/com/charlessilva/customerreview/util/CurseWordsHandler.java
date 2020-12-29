@@ -1,4 +1,4 @@
-package com.charlessilva.customerreview;
+package com.charlessilva.customerreview.util;
 
 public class CurseWordsHandler {
 	

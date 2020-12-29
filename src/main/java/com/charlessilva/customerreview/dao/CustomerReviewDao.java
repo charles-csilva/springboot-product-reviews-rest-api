@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.charlessilva.customerreview.model.CustomerReviewModel;
-import com.charlessilva.customerreview.model.LanguageModel;
 import com.charlessilva.customerreview.model.ProductModel;
 
 import javax.transaction.Transactional;
@@ -23,9 +22,6 @@ public interface CustomerReviewDao extends JpaRepository<CustomerReviewModel, Lo
 
 	@Query("select avg(reviews.rating) from CustomerReviewModel reviews where reviews.product = ?1")
 	Double getAverageRating(ProductModel product);
-
-	@Query("select reviews from CustomerReviewModel reviews where reviews.product = ?1 and reviews.language = ?2")
-	List<CustomerReviewModel> getReviewsForProductAndLanguage(ProductModel product, LanguageModel language);
 
 	@Transactional
 	@Modifying

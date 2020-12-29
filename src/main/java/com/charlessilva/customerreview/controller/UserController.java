@@ -16,7 +16,8 @@ public class UserController
 	@PostMapping({ "users" })
 	public UserModel createUser()
 	{
-		final UserModel user = new UserModel();
+		UserModel user = new UserModel();
+		user.setName("user test");
 		userDao.save(user);
 		return user;
 	}

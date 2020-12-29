@@ -7,12 +7,11 @@ A sample application that uses:
 
 # Execution
 
-## Pre-requirements
-- Docker
-- Docker Compose
-
-## Command
+## Via Docker
 ```$ docker-compose up```
+
+## Via Maven
+```$ mvn spring-boot:run```
 
 # Usage
 localhost:8080

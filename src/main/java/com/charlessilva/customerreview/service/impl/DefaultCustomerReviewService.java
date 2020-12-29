@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.charlessilva.customerreview.dao.CustomerReviewDao;
 import com.charlessilva.customerreview.model.CustomerReviewModel;
-import com.charlessilva.customerreview.model.LanguageModel;
 import com.charlessilva.customerreview.model.ProductModel;
 import com.charlessilva.customerreview.model.UserModel;
 import com.charlessilva.customerreview.service.CustomerReviewService;
@@ -62,14 +61,6 @@ public class DefaultCustomerReviewService implements CustomerReviewService
 	public Integer getNumberOfReviews(final ProductModel product)
 	{
 		return customerReviewDao.getNumberOfReviews(product);
-	}
-
-	@Override
-	public List<CustomerReviewModel> getReviewsForProductAndLanguage(final ProductModel product, final LanguageModel language)
-	{
-		ServicesUtil.validateParameterNotNullStandardMessage("product", product);
-		ServicesUtil.validateParameterNotNullStandardMessage("language", language);
-		return customerReviewDao.getReviewsForProductAndLanguage(product, language);
 	}
 	
 	@Override

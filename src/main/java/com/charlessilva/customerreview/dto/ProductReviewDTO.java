@@ -1,8 +1,8 @@
-package com.charlessilva.customerreview.forms;
+package com.charlessilva.customerreview.dto;
 
 import java.io.Serializable;
 
-public class CustomerReviewForm implements Serializable
+public class ProductReviewDTO implements Serializable
 {
 	private static final long serialVersionUID = 2081133482443965199L;
 

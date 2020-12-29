@@ -38,9 +38,6 @@ public class CustomerReviewModel implements Serializable {
 	@JoinColumn(name = "product_id")
 	private ProductModel product;
 
-	@ManyToOne
-	private LanguageModel language;
-
 	public Long getId() {
 		return id;
 	}
@@ -87,15 +84,5 @@ public class CustomerReviewModel implements Serializable {
 
 	public void setProduct(ProductModel product) {
 		this.product = product;
-	}
-
-	public LanguageModel getLanguage()
-	{
-		return language;
-	}
-
-	public void setLanguage(LanguageModel language)
-	{
-		this.language = language;
 	}
 }

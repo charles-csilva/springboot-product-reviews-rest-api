@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.charlessilva.customerreview.CurseWordsHandler;
 import com.charlessilva.customerreview.dao.ProductDao;
 import com.charlessilva.customerreview.dao.UserDao;
+import com.charlessilva.customerreview.dto.ProductReviewDTO;
 import com.charlessilva.customerreview.exception.ProductNotFoundException;
 import com.charlessilva.customerreview.exception.UserNotFoundException;
-import com.charlessilva.customerreview.forms.CustomerReviewForm;
 import com.charlessilva.customerreview.model.CustomerReviewModel;
 import com.charlessilva.customerreview.model.ProductModel;
 import com.charlessilva.customerreview.model.UserModel;
 import com.charlessilva.customerreview.service.CustomerReviewService;
+import com.charlessilva.customerreview.util.CurseWordsHandler;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("reviews")
-public class CustomerReviewController
+@RequestMapping("product-reviews")
+public class ProductReviewController
 {
 	@Autowired
 	private ProductDao productDao;
@@ -44,8 +45,8 @@ public class CustomerReviewController
 		@RequestParam(required = false) final Double ratingFrom,
 		@RequestParam(required = false) final Double ratingTo)
 	{
-		final ProductModel product = productDao.findOne(productId);
-		if (product == null)
+		Optional<ProductModel> product = productDao.findById(productId);
+		if (!product.isPresent())
 		{
 			throw new ProductNotFoundException(productId);
 		}
@@ -55,14 +56,14 @@ public class CustomerReviewController
 			Double begin = ratingFrom < ratingTo ? ratingFrom : ratingTo;
 			Double end = ratingFrom < ratingTo ? ratingTo : ratingFrom;
 			
-			return customerReviewService.getReviewsForProductAndRating(product, begin, end);
+			return customerReviewService.getReviewsForProductAndRating(product.get(), begin, end);
 		}
-		return customerReviewService.getReviewsForProduct(product);
+		return customerReviewService.getReviewsForProduct(product.get());
 	}
 
 	@PostMapping({ "" })
 	public ResponseEntity<CustomerReviewModel> createReview(
-		@RequestBody final CustomerReviewForm customerReviewForm)
+		@RequestBody final ProductReviewDTO customerReviewForm)
 	{
 		if(customerReviewForm.getRating() < 0
 				|| CurseWordsHandler.containsCurseWords(customerReviewForm.getHeadline())
@@ -70,22 +71,22 @@ public class CustomerReviewController
 			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		Long productId = customerReviewForm.getProductId();
-		final ProductModel product = productDao.findOne(productId);
-		if (product == null)
+		Optional<ProductModel> product = productDao.findById(productId);
+		if (!product.isPresent())
 		{
 			throw new ProductNotFoundException(productId);
 		}
 
 		Long userId = customerReviewForm.getUserId();
-		final UserModel user = userDao.findOne(userId);
-		if (user == null)
+		Optional<UserModel> user = userDao.findById(userId);
+		if (!user.isPresent())
 		{
 			throw new UserNotFoundException(userId);
 		}
 
 		CustomerReviewModel reviewModel = customerReviewService
 				.createCustomerReview(customerReviewForm.getRating(), customerReviewForm.getHeadline(),
-						customerReviewForm.getComment(), product, user);
+						customerReviewForm.getComment(), product.get(), user.get());
 		return new ResponseEntity<CustomerReviewModel>(reviewModel, HttpStatus.OK);
 	}
 
